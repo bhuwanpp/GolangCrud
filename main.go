@@ -33,6 +33,8 @@ type users struct {
 	Name string
 }
 
+var port string = "4000"
+
 func main() {
 	var err error
 	db, err = sqlx.Connect("postgres", "user=postgres dbname=postgres password=12345678 sslmode = disable")
@@ -62,7 +64,7 @@ func main() {
 		r.Put("/{id}", updateUser)
 		r.Delete("/{id}", deleteUser)
 	})
-	port := "4000"
+
 	log.Printf("Listening on port %s", port)
 	http.ListenAndServe(":"+port, r)
 
